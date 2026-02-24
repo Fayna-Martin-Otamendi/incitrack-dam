@@ -6,10 +6,10 @@ public class Incidencia {
     private String titulo;
     private String descripcion;
     private String ubicacion;
-    private Usuario usuario;
-    private Categoria categoria;
-    private EstadoIncidencia estado;
-    private TipoIncidencia tipo;
+    private int idUsuario;
+    private int idCategoria;
+    private String estado;
+    private String tipo;
     private int prioridadCalculada;
     private String fechaCreacion;
 
@@ -18,13 +18,13 @@ public class Incidencia {
     public Incidencia() {
     }
 
-    public Incidencia(int idIncidencia, String titulo, String descripcion, String ubicacion, Usuario usuario, Categoria categoria, EstadoIncidencia estado, TipoIncidencia tipo,  int prioridadCalculada, String fechaCreacion) {
+    public Incidencia(int idIncidencia, String titulo, String descripcion, String ubicacion, int idUsuario, int idCategoria, String estado, String tipo,  int prioridadCalculada, String fechaCreacion) {
         this.idIncidencia = idIncidencia;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.ubicacion = ubicacion;
-        this.usuario = usuario;
-        this.categoria = categoria;
+        this.idUsuario = idUsuario;
+        this.idCategoria = idCategoria;
         this.estado = estado;
         this.tipo = tipo;
         this.prioridadCalculada = prioridadCalculada;
@@ -63,35 +63,35 @@ public class Incidencia {
         this.ubicacion = ubicacion;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public Categoria getCategoria() {
-        return categoria;
+    public int getIdCategoria() {
+        return idCategoria;
     }
 
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
+    public void setIdCategoria(int idCategoria) {
+        this.idCategoria = idCategoria;
     }
 
-    public EstadoIncidencia getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(EstadoIncidencia estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
-    public TipoIncidencia getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(TipoIncidencia tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
@@ -118,8 +118,8 @@ public class Incidencia {
                 ", titulo='" + titulo + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", ubicacion='" + ubicacion + '\'' +
-                ", usuario='" + usuario + '\'' +
-                ", categoria='" + categoria + '\'' +
+                ", usuario='" + idUsuario + '\'' +
+                ", categoria='" + idCategoria + '\'' +
                 ", estado='" + estado + '\'' +
                 ", tipo='" + tipo + '\'' +
                 ", prioridadCalculada=" + prioridadCalculada +
