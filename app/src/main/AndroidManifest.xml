@@ -30,6 +30,9 @@
             android:name=".ui.PantallaCrearAviso"
             android:exported="false" />
         <activity
+            android:name=".ui.PantallaEditarAviso"
+            android:exported="false" />
+        <activity
             android:name=".ui.PantallaPanelAdmin"
             android:exported="false" />
         <activity

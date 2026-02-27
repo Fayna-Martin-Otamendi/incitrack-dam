@@ -23,6 +23,7 @@ class TablonAdapter(
         val tvTituloAviso: TextView = itemView.findViewById(R.id.tvTituloAviso)
         val tvFechaAviso: TextView = itemView.findViewById(R.id.tvFechaAviso)
         val btnBorrarAviso: Button = itemView.findViewById(R.id.btnBorrarAviso)
+        val btnEditarAviso: Button = itemView.findViewById(R.id.btnEditarAviso)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -37,7 +38,7 @@ class TablonAdapter(
         holder.tvTituloAviso.text = aviso.getTitulo()
         holder.tvFechaAviso.text = "Fecha: " + aviso.getFechaPublicacion()
 
-        // popup para leer el texto (vecino y admin)
+        // popup para leer el detalle (vecino y admin)
         holder.itemView.setOnClickListener {
             androidx.appcompat.app.AlertDialog.Builder(context)
                 .setTitle(aviso.getTitulo())
@@ -46,34 +47,37 @@ class TablonAdapter(
                 .show()
         }
 
-        // botón borrar solo si es admin
         if (modoAdmin) {
             holder.btnBorrarAviso.visibility = View.VISIBLE
+            holder.btnEditarAviso.visibility = View.VISIBLE
 
             holder.btnBorrarAviso.setOnClickListener {
-
                 androidx.appcompat.app.AlertDialog.Builder(context)
                     .setTitle("Borrar aviso")
                     .setMessage("¿Seguro que quieres borrar este aviso?")
                     .setPositiveButton("Sí") { _, _ ->
-
                         val dbHelper = DatabaseHelper(context)
                         val tablonDAO = TablonDAO(dbHelper)
-
                         tablonDAO.deleteTablon(aviso)
 
                         context.startActivity(Intent(context, PantallaGestionTablon::class.java))
-
-                        if (context is PantallaGestionTablon) {
-                            context.finish()
-                        }
+                        if (context is PantallaGestionTablon) context.finish()
                     }
                     .setNegativeButton("No", null)
                     .show()
             }
 
+            holder.btnEditarAviso.setOnClickListener {
+                val intent = Intent(context, PantallaEditarAviso::class.java)
+                intent.putExtra("idAviso", aviso.getIdAviso())
+                context.startActivity(intent)
+
+                if (context is PantallaGestionTablon) context.finish()
+            }
+
         } else {
             holder.btnBorrarAviso.visibility = View.GONE
+            holder.btnEditarAviso.visibility = View.GONE
         }
     }
 
