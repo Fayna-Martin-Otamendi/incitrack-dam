@@ -144,6 +144,49 @@ public class IncidenciaDAO {
         return lista;
     }
 
+    public List<Incidencia> getIncidenciasPorUsuario(int idUsuario) {
+
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = null;
+
+        List<Incidencia> lista = new ArrayList<>();
+
+        try {
+            cursor = db.query(
+                    TABLE_INCIDENCIA,
+                    null,
+                    COL_ID_USUARIO + "=?",
+                    new String[]{String.valueOf(idUsuario)},
+                    null,
+                    null,
+                    COL_ID + " ASC"
+            );
+
+            while (cursor.moveToNext()) {
+
+                Incidencia incidencia = new Incidencia();
+
+                incidencia.setIdIncidencia(cursor.getInt(cursor.getColumnIndexOrThrow(COL_ID)));
+                incidencia.setTitulo(cursor.getString(cursor.getColumnIndexOrThrow(COL_TITULO)));
+                incidencia.setDescripcion(cursor.getString(cursor.getColumnIndexOrThrow(COL_DESCRIPCION)));
+                incidencia.setUbicacion(cursor.getString(cursor.getColumnIndexOrThrow(COL_UBICACION)));
+                incidencia.setFechaCreacion(cursor.getString(cursor.getColumnIndexOrThrow(COL_FECHA_CREACION)));
+                incidencia.setPrioridadCalculada(cursor.getInt(cursor.getColumnIndexOrThrow(COL_PRIORIDAD_CALCULADA)));
+                incidencia.setIdUsuario(cursor.getInt(cursor.getColumnIndexOrThrow(COL_ID_USUARIO)));
+                incidencia.setIdCategoria(cursor.getInt(cursor.getColumnIndexOrThrow(COL_ID_CATEGORIA)));
+                incidencia.setEstado(cursor.getString(cursor.getColumnIndexOrThrow(COL_ESTADO)));
+                incidencia.setTipo(cursor.getString(cursor.getColumnIndexOrThrow(COL_TIPO)));
+
+                lista.add(incidencia);
+            }
+
+        } finally {
+            if (cursor != null) cursor.close();
+            db.close();
+        }
+        return lista;
+    }
+
     public int updateIncidencia(Incidencia incidencia) {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();

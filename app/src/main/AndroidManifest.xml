@@ -27,6 +27,9 @@
             android:name=".ui.PantallaGestionTablon"
             android:exported="false" />
         <activity
+            android:name=".ui.PantallaCrearAviso"
+            android:exported="false" />
+        <activity
             android:name=".ui.PantallaPanelAdmin"
             android:exported="false" />
         <activity

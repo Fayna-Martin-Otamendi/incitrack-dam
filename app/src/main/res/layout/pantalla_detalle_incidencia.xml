@@ -3,19 +3,68 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
     <TextView
-        android:id="@+id/tvTitulo"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvDetalleTitulo"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="PANTALLA DETALLE INCIDENCIA"
-        android:textSize="22sp"
+        android:text="Título"
         android:textStyle="bold"
+        android:textSize="20sp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvDetalleEstado"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Estado"
+        app:layout_constraintTop_toBottomOf="@id/tvDetalleTitulo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp"/>
+
+    <TextView
+        android:id="@+id/tvDetalleFecha"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Fecha"
+        app:layout_constraintTop_toBottomOf="@id/tvDetalleEstado"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/tvDetalleUbicacion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Ubicación"
+        app:layout_constraintTop_toBottomOf="@id/tvDetalleFecha"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/tvDetalleTipo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Tipo"
+        app:layout_constraintTop_toBottomOf="@id/tvDetalleUbicacion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/tvDetalleDescripcion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Descripción"
+        app:layout_constraintTop_toBottomOf="@id/tvDetalleTipo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

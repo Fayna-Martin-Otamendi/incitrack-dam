@@ -7,34 +7,47 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/tvTituloGestionTablon"
+        android:id="@+id/tvTituloPantalla"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gestión del tablón"
+        android:text="Crear aviso"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <Button
-        android:id="@+id/btnCrearAviso"
+    <EditText
+        android:id="@+id/etTituloAviso"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Crear aviso"
-        android:layout_marginTop="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:hint="Título"
+        android:inputType="text"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTituloPantalla"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerGestionTablon"
+    <EditText
+        android:id="@+id/etTextoAviso"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:hint="Texto del aviso"
+        android:inputType="textMultiLine"
+        android:gravity="top"
         android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
-        app:layout_constraintTop_toBottomOf="@id/tvTituloGestionTablon"
-        app:layout_constraintBottom_toTopOf="@id/btnCrearAviso"
+        app:layout_constraintTop_toBottomOf="@id/etTituloAviso"
+        app:layout_constraintBottom_toTopOf="@id/btnPublicarAviso"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/btnPublicarAviso"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Publicar"
+        android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
