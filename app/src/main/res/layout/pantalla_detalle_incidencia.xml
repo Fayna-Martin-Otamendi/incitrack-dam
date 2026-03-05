@@ -67,4 +67,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="12dp"/>
 
+    <Button
+        android:id="@+id/btnEditarIncidencia"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Editar"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnBorrarIncidencia"
+        app:layout_constraintWidth_percent="0.48"/>
+
+    <Button
+        android:id="@+id/btnBorrarIncidencia"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Borrar"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnEditarIncidencia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.48"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

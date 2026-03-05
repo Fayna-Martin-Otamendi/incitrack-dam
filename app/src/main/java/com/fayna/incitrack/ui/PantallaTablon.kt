@@ -9,9 +9,12 @@ import com.fayna.incitrack.dao.TablonDAO
 import com.fayna.incitrack.db.DatabaseHelper
 
 class PantallaTablon : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.pantalla_tablon)
+
+        val modoAdmin = intent.getBooleanExtra("modoAdmin", false)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerTablon)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -19,8 +22,9 @@ class PantallaTablon : AppCompatActivity() {
         val dbHelper = DatabaseHelper(this)
         val tablonDAO = TablonDAO(dbHelper)
 
-        val listaAvisos= tablonDAO.getAllAvisos()
-        val adapter = TablonAdapter(this, listaAvisos, false)
+        val listaAvisos = tablonDAO.getAllAvisos()
+        val adapter = TablonAdapter(this, listaAvisos, modoAdmin)
+
         recyclerView.adapter = adapter
     }
 }

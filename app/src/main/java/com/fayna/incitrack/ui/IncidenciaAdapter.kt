@@ -12,7 +12,10 @@ import com.fayna.incitrack.model.Incidencia
 
 class IncidenciaAdapter(
     private val context: Context,
-    private val listaIncidencias: List<Incidencia>
+    private val listaIncidencias: List<Incidencia>,
+    private val origen: String,
+    private val modoAdmin: Boolean,
+    private val idUsuario: Int
 ) : RecyclerView.Adapter<IncidenciaAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -29,16 +32,20 @@ class IncidenciaAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val incidencia = listaIncidencias[position]
-
         holder.tvTitulo.text = incidencia.getTitulo()
         holder.tvEstado.text = "Estado: " + incidencia.getEstado()
         holder.tvFecha.text = "Fecha: " + incidencia.getFechaCreacion()
 
-        holder.itemView.setOnClickListener {
-            val intent = Intent(context, PantallaDetalleIncidencia::class.java)
-            intent.putExtra("idIncidencia", incidencia.getIdIncidencia())
-            context.startActivity(intent)
-        }
+        holder.itemView.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                val intent = Intent(context, PantallaDetalleIncidencia::class.java)
+                intent.putExtra("idIncidencia", incidencia.getIdIncidencia())
+                intent.putExtra("origen", origen) // "LISTADO" o "MIS"
+                intent.putExtra("modoAdmin", modoAdmin)
+                intent.putExtra("idUsuario", idUsuario)
+                context.startActivity(intent)
+            }
+        })
     }
 
     override fun getItemCount(): Int {

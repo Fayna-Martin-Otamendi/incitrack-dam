@@ -24,6 +24,9 @@
             android:name=".ui.PantallaCrearIncidencia"
             android:exported="false" />
         <activity
+            android:name=".ui.PantallaEditarIncidencia"
+            android:exported="false" />
+        <activity
             android:name=".ui.PantallaGestionTablon"
             android:exported="false" />
         <activity

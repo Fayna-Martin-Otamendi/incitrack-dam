@@ -17,6 +17,9 @@ class PantallaEditarAviso : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.pantalla_crear_aviso)
 
+        val modoAdmin = intent.getBooleanExtra("modoAdmin", true)
+        val idUsuario = intent.getIntExtra("idUsuario", -1)
+
         val etTitulo = findViewById<EditText>(R.id.etTituloAviso)
         val etTexto = findViewById<EditText>(R.id.etTextoAviso)
         val btnPublicar = findViewById<Button>(R.id.btnPublicarAviso)
@@ -27,7 +30,6 @@ class PantallaEditarAviso : AppCompatActivity() {
         val tablonDAO = TablonDAO(dbHelper)
 
         val idAviso = intent.getIntExtra("idAviso", -1)
-
         if (idAviso == -1) {
             Toast.makeText(this, "Error: aviso no encontrado", Toast.LENGTH_SHORT).show()
             finish()
@@ -35,7 +37,6 @@ class PantallaEditarAviso : AppCompatActivity() {
         }
 
         val avisoExistente = tablonDAO.getTablonById(idAviso)
-
         if (avisoExistente == null) {
             Toast.makeText(this, "Error: aviso no encontrado", Toast.LENGTH_SHORT).show()
             finish()
@@ -60,7 +61,7 @@ class PantallaEditarAviso : AppCompatActivity() {
             avisoActualizado.setTitulo(titulo)
             avisoActualizado.setTexto(texto)
 
-
+            // mantenemos lo que ya tenía
             avisoActualizado.setFechaPublicacion(avisoExistente.getFechaPublicacion())
             avisoActualizado.setIdAdminPublicador(avisoExistente.getIdAdminPublicador())
 
@@ -68,7 +69,11 @@ class PantallaEditarAviso : AppCompatActivity() {
 
             if (filas > 0) {
                 Toast.makeText(this, "Aviso actualizado", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, PantallaGestionTablon::class.java))
+
+                val intent = Intent(this, PantallaGestionTablon::class.java)
+                intent.putExtra("modoAdmin", modoAdmin)
+                intent.putExtra("idUsuario", idUsuario)
+                startActivity(intent)
                 finish()
             } else {
                 Toast.makeText(this, "Error al actualizar aviso", Toast.LENGTH_SHORT).show()

@@ -1,54 +1,65 @@
 package com.fayna.incitrack.ui
-import android.content.Intent
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.fayna.incitrack.R
-
-import android.util.Log
-import com.fayna.incitrack.db.DatabaseHelper
 import com.fayna.incitrack.dao.UsuarioDAO
-import com.fayna.incitrack.model.Usuario
+import com.fayna.incitrack.db.DatabaseHelper
 
 class PantallaLogin : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.pantalla_login)
 
-        val btnEntrarVecino = findViewById<Button>(R.id.btnEntrarVecino)
-        val btnEntrarAdmin = findViewById<Button>(R.id.btnEntrarAdmin)
+        val etEmail = findViewById<EditText>(R.id.etEmail)
+        val etPassword = findViewById<EditText>(R.id.etPassword)
+        val btnEntrar = findViewById<Button>(R.id.btnEntrar)
 
-        btnEntrarVecino.setOnClickListener {
+        btnEntrar.setOnClickListener {
+
+            val email = etEmail.text.toString().trim()
+            val pass = etPassword.text.toString().trim()
+
+            if (email.isEmpty() || pass.isEmpty()) {
+                Toast.makeText(this, "Rellena email y contraseña", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
             val dbHelper = DatabaseHelper(this)
             val usuarioDAO = UsuarioDAO(dbHelper)
 
-            val encontrado = usuarioDAO.getUsuarioByEmail("prueba@incitrack.com")
-            Log.d("INCI_TEST", "ENCONTRADO = ${encontrado?.toString()}")
+            val usuario = usuarioDAO.getUsuarioByEmail(email)
 
-            val encontradoPorId = usuarioDAO.getUsuarioById(1)
-            Log.d("INCI_TEST", "ENCONTRADO_ID = ${encontradoPorId?.toString()}")
+            if (usuario == null) {
+                Toast.makeText(this, "Usuario no encontrado", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
-            val u = Usuario()
-            u.setNombre("Prueba")
-            u.setEmail("prueba@incitrack.com")
-            u.setTelefono("600000000")
-            u.setPropiedad("3B")
-            u.setRol("VECINO")
-            u.setPassword("1234")
+            if (usuario.getPassword() != pass) {
+                Toast.makeText(this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
-            val id = usuarioDAO.insertUsuario(u)
-            Log.d("INCI_TEST", "ID INSERTADO = $id")
+            val modoAdmin = usuario.getRol() == "ADMIN"
 
+            if (modoAdmin) {
+                val intent = Intent(this, PantallaPanelAdmin::class.java)
+                intent.putExtra("idUsuario", usuario.getIdUsuario())
+                intent.putExtra("modoAdmin", true)
+                startActivity(intent)
+            } else {
+                val intent = Intent(this, PantallaPanelVecino::class.java)
+                intent.putExtra("idUsuario", usuario.getIdUsuario())
+                intent.putExtra("modoAdmin", false)
+                startActivity(intent)
+            }
 
-            val intent = Intent(this, PantallaPanelVecino::class.java)
-            startActivity(intent)
-        }
-
-        btnEntrarAdmin.setOnClickListener {
-            val intent = Intent(this, PantallaPanelAdmin::class.java)
-            startActivity(intent)
+            finish()
         }
     }
 }

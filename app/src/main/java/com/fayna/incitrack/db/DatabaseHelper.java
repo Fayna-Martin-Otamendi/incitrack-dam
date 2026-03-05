@@ -63,6 +63,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_Incidencia);
         db.execSQL(CREATE_TABLE_Tablon);
         db.execSQL(CREATE_TABLE_IncidenciaImagen);
+
+        db.execSQL("INSERT INTO Usuario (nombre, email, telefono, propiedad, rol, password) VALUES ('Admin', 'admin@incitrack.com', '600000001', '1A', 'ADMIN', '1234')");
+        db.execSQL("INSERT INTO Usuario (nombre, email, telefono, propiedad, rol, password) VALUES ('Vecino', 'vecino@incitrack.com', '600000002', '2B', 'VECINO', '1234')");
     }
 
     @Override

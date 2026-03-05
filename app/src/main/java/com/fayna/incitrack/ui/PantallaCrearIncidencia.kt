@@ -28,11 +28,18 @@ class PantallaCrearIncidencia : AppCompatActivity() {
         val spCategoria = findViewById<Spinner>(R.id.spCategoria)
         val btnGuardar = findViewById<Button>(R.id.btnGuardar)
 
+        val modoAdmin = intent.getBooleanExtra("modoAdmin", false)
+        val idUsuario = intent.getIntExtra("idUsuario", -1)
 
         val categoriasFake = listOf("General", "Agua", "Ascensor", "Electricidad")
-        spCategoria.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, categoriasFake)
+        spCategoria.adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_dropdown_item,
+            categoriasFake
+        )
 
         btnGuardar.setOnClickListener {
+
             val titulo = etTitulo.text.toString().trim()
             val descripcion = etDescripcion.text.toString().trim()
             val ubicacion = etUbicacion.text.toString().trim()
@@ -42,12 +49,16 @@ class PantallaCrearIncidencia : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            if (idUsuario == -1) {
+                Toast.makeText(this, "Error: usuario no válido", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             val tipo = if (rgTipo.checkedRadioButtonId == rbGeneral.id) "General" else "Privada"
             val estado = "Pendiente"
             val fecha = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(Date())
 
-
-            val idUsuario = 1
+            // De momento lo dejamos simple (como lo tenías): categoría 1 y prioridad 0
             val idCategoria = 1
             val prioridad = 0
 
@@ -69,7 +80,11 @@ class PantallaCrearIncidencia : AppCompatActivity() {
 
             if (idInsertado != -1L) {
                 Toast.makeText(this, "Incidencia guardada", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, PantallaListado::class.java))
+
+                val intent = Intent(this, PantallaListado::class.java)
+                intent.putExtra("modoAdmin", modoAdmin)
+                intent.putExtra("idUsuario", idUsuario)
+                startActivity(intent)
                 finish()
             } else {
                 Toast.makeText(this, "Error al guardar", Toast.LENGTH_SHORT).show()

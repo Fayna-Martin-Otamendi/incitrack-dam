@@ -20,6 +20,9 @@ class PantallaCrearAviso : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.pantalla_crear_aviso)
 
+        val modoAdmin = intent.getBooleanExtra("modoAdmin", true)
+        val idUsuario = intent.getIntExtra("idUsuario", -1)
+
         val etTitulo = findViewById<EditText>(R.id.etTituloAviso)
         val etTexto = findViewById<EditText>(R.id.etTextoAviso)
         val btnPublicar = findViewById<Button>(R.id.btnPublicarAviso)
@@ -37,19 +40,28 @@ class PantallaCrearAviso : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            if (idUsuario == -1) {
+                Toast.makeText(this, "Error: usuario no válido", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             val fecha = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(Date())
 
             val aviso = Tablon()
             aviso.setTitulo(titulo)
             aviso.setTexto(texto)
-            aviso.setIdAdminPublicador(1)
+            aviso.setIdAdminPublicador(idUsuario)
             aviso.setFechaPublicacion(fecha)
 
             val idNuevo = tablonDAO.insertTablon(aviso)
 
             if (idNuevo > 0) {
                 Toast.makeText(this, "Aviso publicado", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, PantallaGestionTablon::class.java))
+
+                val intent = Intent(this, PantallaGestionTablon::class.java)
+                intent.putExtra("modoAdmin", modoAdmin)
+                intent.putExtra("idUsuario", idUsuario)
+                startActivity(intent)
                 finish()
             } else {
                 Toast.makeText(this, "Error al publicar aviso", Toast.LENGTH_SHORT).show()
