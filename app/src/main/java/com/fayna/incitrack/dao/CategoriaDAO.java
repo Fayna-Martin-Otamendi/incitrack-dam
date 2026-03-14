@@ -9,12 +9,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+// DAO de la entidad Categoria.
+// Aquí están todas las operaciones que hacemos sobre la tabla Categoria
+// de la base de datos (insertar, consultar, actualizar y borrar).
+
 public class CategoriaDAO {
 
+    // Helper de la base de datos que usamos para abrir la conexión
     private final DatabaseHelper dbHelper;
 
+    // Nombre de la tabla
     private static final String TABLE_CATEGORIA = "Categoria";
 
+    // Columnas de la tabla
     private static final String COL_ID = "idCategoria";
     private static final String COL_NOMBRE = "nombre";
     private static final String COL_URGENCIA_BASE = "urgenciaBase";
@@ -23,6 +30,9 @@ public class CategoriaDAO {
         this.dbHelper = dbHelper;
     }
 
+
+    // Inserta una nueva categoría en la base de datos.
+    // Devuelve el id que genera SQLite al hacer el insert.
     public long insertCategoria(Categoria categoria) {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -46,6 +56,9 @@ public class CategoriaDAO {
         return id;
     }
 
+
+    // Busca una categoría concreta usando su id.
+    // Si la encuentra, crea el objeto Categoria con los datos de la tabla.
     public Categoria getCategoriaById(int idCategoria) {
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -80,6 +93,8 @@ public class CategoriaDAO {
         return categoria;
     }
 
+
+    // Devuelve la lista completa de categorías que hay en la base de datos.
     public List<Categoria> getAllCategorias() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = null;
@@ -115,6 +130,9 @@ public class CategoriaDAO {
         return lista;
     }
 
+
+    // Actualiza los datos de una categoría existente.
+    // Devuelve cuántas filas se han modificado.
     public int updateCategoria (Categoria categoria) {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -139,6 +157,9 @@ public class CategoriaDAO {
         return filas;
     }
 
+
+    // Borra una categoría de la base de datos usando su id.
+    // Devuelve cuántas filas se han eliminado.
     public int deleteCategoria(Categoria categoria) {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();

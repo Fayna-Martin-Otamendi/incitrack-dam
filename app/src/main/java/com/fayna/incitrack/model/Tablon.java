@@ -1,5 +1,9 @@
 package com.fayna.incitrack.model;
 
+
+// Clase modelo de Tablon.
+// Representa un aviso publicado por el administrador en el tablón de la comunidad.
+
 public class Tablon {
 
     private int idAviso;
@@ -8,9 +12,11 @@ public class Tablon {
     private String fechaPublicacion;
     private int idAdminPublicador;
 
+    // Constructor vacío
     public Tablon(){
     }
 
+    // Constructor con todos los campos
     public Tablon(int idAviso, String titulo, String texto, String fechaPublicacion, int idAdminPublicador) {
         this.idAviso = idAviso;
         this.titulo = titulo;
@@ -18,6 +24,8 @@ public class Tablon {
         this.fechaPublicacion = fechaPublicacion;
         this.idAdminPublicador = idAdminPublicador;
     }
+
+    // Getters y setters de los atributos
 
     public int getIdAviso() {
         return idAviso;
@@ -59,6 +67,7 @@ public class Tablon {
         this.idAdminPublicador = idAdminPublicador;
     }
 
+    // Método para mostrar el contenido del objeto en formato texto
     @Override
     public String toString() {
         return "Tablon{" +
@@ -68,6 +77,5 @@ public class Tablon {
                 ", fechaPublicacion='" + fechaPublicacion + '\'' +
                 ", idAdminPublicador=" + idAdminPublicador +
                 '}';
-
     }
 }

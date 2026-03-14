@@ -9,12 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+// DAO de la entidad Usuario.
+// Gestiona los usuarios de la aplicación: vecinos y administrador.
+
 public class UsuarioDAO {
 
     private final DatabaseHelper dbHelper;
 
+    // Nombre de la tabla
     private static final String TABLE_USUARIO = "Usuario";
 
+    // Columnas de la tabla
     private static final String COL_ID = "idUsuario";
     private static final String COL_NOMBRE = "nombre";
     private static final String COL_EMAIL = "email";
@@ -27,6 +32,9 @@ public class UsuarioDAO {
         this.dbHelper = dbHelper;
     }
 
+
+    // Inserta un usuario nuevo en la base de datos.
+    // Devuelve el id generado por SQLite.
     public long insertUsuario(Usuario usuario) {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -54,6 +62,9 @@ public class UsuarioDAO {
         return id;
     }
 
+
+    // Busca un usuario usando su email.
+    // Se utiliza en el proceso de login.
     public Usuario getUsuarioByEmail(String email) {
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -92,6 +103,8 @@ public class UsuarioDAO {
         return usuario;
     }
 
+
+    // Busca un usuario usando su id.
     public Usuario getUsuarioById(int idUsuario) {
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -130,6 +143,8 @@ public class UsuarioDAO {
         return usuario;
     }
 
+
+    // Devuelve todos los usuarios guardados en la base de datos.
     public List<Usuario> getAllUsuarios() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = null;
@@ -147,6 +162,7 @@ public class UsuarioDAO {
                     COL_ID + " ASC"
             );
 
+            // Se recorren los resultados y se convierten en objetos Usuario
             while (cursor.moveToNext()) {
 
                 Usuario usuario = new Usuario();
@@ -169,6 +185,8 @@ public class UsuarioDAO {
         return lista;
     }
 
+
+    // Actualiza los datos de un usuario existente.
     public int updateUsuario(Usuario usuario) {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -197,6 +215,8 @@ public class UsuarioDAO {
         return filas;
     }
 
+
+    // Elimina un usuario de la base de datos usando su id.
     public int deleteUsuario(Usuario usuario) {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();

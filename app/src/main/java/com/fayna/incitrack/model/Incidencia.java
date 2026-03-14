@@ -1,5 +1,9 @@
 package com.fayna.incitrack.model;
 
+
+// Clase modelo de Incidencia.
+// Representa una incidencia creada por un vecino dentro de la aplicación.
+
 public class Incidencia {
 
     private int idIncidencia;
@@ -14,10 +18,11 @@ public class Incidencia {
     private String fechaCreacion;
 
 
-
+    // Constructor vacío
     public Incidencia() {
     }
 
+    // Constructor con todos los campos
     public Incidencia(int idIncidencia, String titulo, String descripcion, String ubicacion, int idUsuario, int idCategoria, String estado, String tipo,  int prioridadCalculada, String fechaCreacion) {
         this.idIncidencia = idIncidencia;
         this.titulo = titulo;
@@ -30,6 +35,8 @@ public class Incidencia {
         this.prioridadCalculada = prioridadCalculada;
         this.fechaCreacion = fechaCreacion;
     }
+
+    // Getters y setters de los atributos
 
     public int getIdIncidencia() {
         return idIncidencia;
@@ -111,6 +118,7 @@ public class Incidencia {
         this.fechaCreacion = fechaCreacion;
     }
 
+    // Método para mostrar el contenido del objeto en texto
     @Override
     public String toString() {
         return "Incidencia{" +

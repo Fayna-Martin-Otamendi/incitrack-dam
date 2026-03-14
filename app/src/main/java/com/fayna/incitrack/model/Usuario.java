@@ -1,5 +1,9 @@
 package com.fayna.incitrack.model;
 
+
+// Clase modelo de Usuario.
+// Representa a un usuario de la aplicación (administrador o vecino).
+
 public class Usuario {
 
     private int idUsuario;
@@ -11,9 +15,11 @@ public class Usuario {
     private String password;
 
 
+    // Constructor vacío
     public Usuario(){
     }
 
+    // Constructor con todos los campos
     public Usuario(int idUsuario, String nombre, String email, String telefono, String propiedad, String rol, String password) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
@@ -23,6 +29,8 @@ public class Usuario {
         this.rol = rol;
         this.password = password;
     }
+
+    // Getters y setters de los atributos
 
     public int getIdUsuario() {
         return idUsuario;
@@ -80,6 +88,7 @@ public class Usuario {
         this.password = password;
     }
 
+    // Método para mostrar el contenido del objeto en formato texto
     @Override
     public String toString () {
         return "Usuario{" +

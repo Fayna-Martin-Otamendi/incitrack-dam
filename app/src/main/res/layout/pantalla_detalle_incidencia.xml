@@ -1,92 +1,223 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvDetalleTitulo"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Título"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:padding="16dp">
 
-    <TextView
-        android:id="@+id/tvDetalleEstado"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Estado"
-        app:layout_constraintTop_toBottomOf="@id/tvDetalleTitulo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="12dp"/>
+        <TextView
+            android:id="@+id/tvDetalleTitulo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Título"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/tvDetalleFecha"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Fecha"
-        app:layout_constraintTop_toBottomOf="@id/tvDetalleEstado"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"/>
+        <TextView
+            android:id="@+id/tvDetalleEstado"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Estado"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/tvDetalleTitulo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/tvDetalleUbicacion"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Ubicación"
-        app:layout_constraintTop_toBottomOf="@id/tvDetalleFecha"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"/>
+        <TextView
+            android:id="@+id/tvDetallePrioridad"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Prioridad"
+            android:layout_marginTop="6dp"
+            app:layout_constraintTop_toBottomOf="@id/tvDetalleEstado"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/tvDetalleTipo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Tipo"
-        app:layout_constraintTop_toBottomOf="@id/tvDetalleUbicacion"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"/>
+        <TextView
+            android:id="@+id/tvDetalleVecino"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Vecino"
+            android:layout_marginTop="6dp"
+            app:layout_constraintTop_toBottomOf="@id/tvDetallePrioridad"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/tvDetalleDescripcion"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Descripción"
-        app:layout_constraintTop_toBottomOf="@id/tvDetalleTipo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="12dp"/>
+        <TextView
+            android:id="@+id/tvDetallePropiedad"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Propiedad"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/tvDetalleVecino"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/btnEditarIncidencia"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Editar"
-        android:layout_margin="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btnBorrarIncidencia"
-        app:layout_constraintWidth_percent="0.48"/>
+        <TextView
+            android:id="@+id/tvDetalleTelefono"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Teléfono"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/tvDetallePropiedad"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/btnBorrarIncidencia"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Borrar"
-        android:layout_margin="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btnEditarIncidencia"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.48"/>
+        <TextView
+            android:id="@+id/tvDetalleFecha"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Fecha"
+            android:layout_marginTop="6dp"
+            app:layout_constraintTop_toBottomOf="@id/tvDetalleTelefono"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvDetalleUbicacion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Ubicación"
+            android:layout_marginTop="6dp"
+            app:layout_constraintTop_toBottomOf="@id/tvDetalleFecha"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvDetalleTipo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Tipo"
+            android:layout_marginTop="6dp"
+            app:layout_constraintTop_toBottomOf="@id/tvDetalleUbicacion"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvDetalleDescripcion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Descripción"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/tvDetalleTipo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivDetalleImagen1"
+            android:layout_width="0dp"
+            android:layout_height="180dp"
+            android:layout_marginTop="16dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/tvDetalleDescripcion"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivDetalleImagen2"
+            android:layout_width="0dp"
+            android:layout_height="180dp"
+            android:layout_marginTop="12dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/ivDetalleImagen1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvTituloComentarios"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Seguimiento"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/ivDetalleImagen2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <EditText
+            android:id="@+id/etNuevoComentario"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Escribe una actualización o comentario"
+            android:minLines="3"
+            android:gravity="top"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/tvTituloComentarios"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/btnGuardarComentario"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Guardar comentario"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/etNuevoComentario"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvListaComentarios"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Sin comentarios todavía"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/btnGuardarComentario"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/btnEstadoEnProceso"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Marcar En proceso"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/tvListaComentarios"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/btnEstadoResuelta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Marcar Resuelta"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/btnEstadoEnProceso"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/btnEditarIncidencia"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Editar"
+            android:layout_marginTop="18dp"
+            app:layout_constraintTop_toBottomOf="@id/btnEstadoResuelta"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/btnBorrarIncidencia"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Borrar"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintTop_toBottomOf="@id/btnEditarIncidencia"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

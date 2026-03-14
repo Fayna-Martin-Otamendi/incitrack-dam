@@ -1,19 +1,27 @@
 package com.fayna.incitrack.model;
 
+
+// Clase modelo de Categoria.
+// Representa una categoría de incidencia dentro de la aplicación.
+
 public class Categoria {
 
     private int idCategoria;
     private String nombre;
     private int urgenciaBase;
 
+    // Constructor vacío
     public Categoria() {
     }
 
+    // Constructor con todos los campos
     public Categoria(int idCategoria, String nombre, int urgenciaBase) {
         this.idCategoria = idCategoria;
         this.nombre = nombre;
         this.urgenciaBase = urgenciaBase;
     }
+
+    // Getters y setters de los atributos
 
     public int getIdCategoria() {
         return idCategoria;
@@ -39,6 +47,7 @@ public class Categoria {
         this.urgenciaBase = urgenciaBase;
     }
 
+    // Método para mostrar el objeto en formato texto
     @Override
     public String toString() {
         return "Categoria{" +

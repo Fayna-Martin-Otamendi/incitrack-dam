@@ -9,12 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+// DAO de la entidad Tablon.
+// Aquí se gestionan los avisos que publica el administrador para los vecinos.
+
 public class TablonDAO {
 
     private final DatabaseHelper dbHelper;
 
+    // Nombre de la tabla
     private static final String TABLE_TABLON = "Tablon";
 
+    // Columnas de la tabla
     private static final String COL_ID = "idAviso";
     private static final String COL_TITULO = "titulo";
     private static final String COL_TEXTO = "texto";
@@ -25,6 +30,9 @@ public class TablonDAO {
         this.dbHelper = dbHelper;
     }
 
+
+    // Inserta un aviso nuevo en el tablón.
+    // Devuelve el id que genera SQLite al guardar el aviso.
     public long insertTablon(Tablon tablon) {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -50,6 +58,8 @@ public class TablonDAO {
         return id;
     }
 
+
+    // Busca un aviso concreto usando su id.
     public Tablon getTablonById(int idAviso) {
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -86,6 +96,8 @@ public class TablonDAO {
         return tablon;
     }
 
+
+    // Devuelve todos los avisos publicados en el tablón.
     public List<Tablon> getAllAvisos() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = null;
@@ -103,6 +115,7 @@ public class TablonDAO {
                     COL_ID + " ASC"
             );
 
+            // Se recorren los resultados y se convierten en objetos Tablon
             while (cursor.moveToNext()) {
 
                 Tablon tablon = new Tablon();
@@ -123,6 +136,8 @@ public class TablonDAO {
         return lista;
     }
 
+
+    // Actualiza los datos de un aviso que ya existe.
     public int updateTablon (Tablon tablon) {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -149,6 +164,8 @@ public class TablonDAO {
         return filas;
     }
 
+
+    // Elimina un aviso del tablón usando su id.
     public int deleteTablon(Tablon tablon) {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();

@@ -9,12 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+// DAO de la entidad Incidencia.
+// Aquí están todas las operaciones que hacemos sobre la tabla Incidencia
+// de la base de datos: crear incidencias, consultarlas, actualizarlas y borrarlas.
+
 public class IncidenciaDAO {
 
     private final DatabaseHelper dbHelper;
 
+    // Nombre de la tabla
     private static final String TABLE_INCIDENCIA = "Incidencia";
 
+    // Columnas de la tabla
     private static final String COL_ID = "idIncidencia";
     private static final String COL_TITULO = "titulo";
     private static final String COL_DESCRIPCION = "descripcion";
@@ -30,6 +36,9 @@ public class IncidenciaDAO {
         this.dbHelper = dbHelper;
     }
 
+
+    // Inserta una incidencia nueva en la base de datos.
+    // Devuelve el id que genera SQLite cuando se guarda.
     public long insertIncidencia(Incidencia incidencia) {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -61,6 +70,8 @@ public class IncidenciaDAO {
     }
 
 
+    // Busca una incidencia concreta por su id.
+    // Si la encuentra, crea el objeto Incidencia con los datos de la tabla.
     public Incidencia getIncidenciaById(int idIncidencia) {
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -102,6 +113,8 @@ public class IncidenciaDAO {
         return incidencia;
     }
 
+
+    // Devuelve todas las incidencias que hay en la base de datos.
     public List<Incidencia> getAllIncidencias() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = null;
@@ -119,6 +132,7 @@ public class IncidenciaDAO {
                     COL_ID + " ASC"
             );
 
+            // Recorremos todas las filas y las convertimos en objetos Incidencia
             while (cursor.moveToNext()) {
 
                 Incidencia incidencia = new Incidencia();
@@ -144,6 +158,9 @@ public class IncidenciaDAO {
         return lista;
     }
 
+
+    // Devuelve solo las incidencias que pertenecen a un usuario concreto.
+    // Esto se usa para que el vecino pueda ver únicamente sus incidencias.
     public List<Incidencia> getIncidenciasPorUsuario(int idUsuario) {
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -187,6 +204,9 @@ public class IncidenciaDAO {
         return lista;
     }
 
+
+    // Actualiza los datos de una incidencia que ya existe.
+    // Devuelve cuántas filas se han modificado.
     public int updateIncidencia(Incidencia incidencia) {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -218,6 +238,8 @@ public class IncidenciaDAO {
         return filas;
     }
 
+
+    // Elimina una incidencia de la base de datos usando su id.
     public int deleteIncidencia(Incidencia incidencia) {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
